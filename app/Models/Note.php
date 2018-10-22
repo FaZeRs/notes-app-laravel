@@ -34,7 +34,7 @@ class Note extends Model
      */
     public function scopePublic($query)
     {
-        return $query->where('public', 1);
+        return $query->where('is_public', true);
     }
 
     /**
