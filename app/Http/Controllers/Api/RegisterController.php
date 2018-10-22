@@ -19,7 +19,7 @@ class RegisterController extends Controller
 
     /**
      * @param  RegisterRequest $request
-     * @return \App\Models\User
+     * @return \Illuminate\Http\JsonResponse
      */
     public function register(RegisterRequest $request)
     {

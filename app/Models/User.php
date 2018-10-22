@@ -16,7 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -25,6 +27,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password'
+        'password',
     ];
+
+    /**
+     * Get the notes for the user.
+     */
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }

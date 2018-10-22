@@ -3,42 +3,39 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\User;
-use Laravel\Passport\Passport;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PassportTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUserGetDetails()
+    public function test_user_get_details()
     {
-        $user = factory(User::class)->create();
-        Passport::actingAs($user);
-
-        $response = $this->json('GET', '/api/details');
+        $this->login();
+        $response = $this->getJson('/api/details');
         $response->assertSuccessful();
-        $response->assertJson([
-            'id'         => $user->id,
-            'name'       => $user->name,
-            'email'      => $user->email,
-            'created_at' => $user->created_at->toDateTimeString(),
-            'updated_at' => $user->updated_at->toDateTimeString(),
+        $response->assertJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'email',
+                'notes',
+                'created_at',
+                'updated_at',
+            ],
         ]);
     }
 
-    public function testLogout()
+    public function test_logout()
     {
-        $user = factory(User::class)->create();
-        Passport::actingAs($user);
-
-        $response = $this->json('GET', '/api/logout');
+        $this->login();
+        $response = $this->getJson('/api/logout');
         $response->assertSuccessful();
     }
 
-    public function testGuest()
+    public function test_guest_cannot_see_details()
     {
-        $response = $this->json('POST', '/api/details');
+        $response = $this->getJson('/api/details');
         $response->assertStatus(401);
     }
 }

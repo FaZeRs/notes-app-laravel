@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \App\Http\Resources\UserResource
+     */
     public function details(Request $request)
     {
-        return response()->json($request->user());
+        return new UserResource($request->user()->load('notes'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout(Request $request)
     {
         $accessToken = $request->user()->token();

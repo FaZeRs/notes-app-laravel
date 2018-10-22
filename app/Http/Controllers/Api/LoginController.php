@@ -18,7 +18,7 @@ class LoginController extends Controller
 
     /**
      * @param  LoginRequest $request
-     * @return \App\Models\User
+     * @return \Illuminate\Http\JsonResponse
      */
     public function login(LoginRequest $request)
     {
