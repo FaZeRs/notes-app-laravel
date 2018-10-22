@@ -19,4 +19,9 @@ Route::post('register', 'RegisterController@register');
 Route::middleware('auth:api')->group(function () {
     Route::get('details', 'UserController@details');
     Route::get('logout', 'UserController@logout');
+    Route::get('notes/public', 'NoteController@getPublic')->name('notes.public');
+    Route::apiResource('notes', 'NoteController');
+    Route::apiResource('notes/{note}/comments', 'CommentController', [
+        'except' => ['show'],
+    ]);
 });
