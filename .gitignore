@@ -13,3 +13,5 @@ yarn-error.log
 .env
 .phpunit.result.cache
 .rnd
+_ide_helper.php
+.phpstorm.meta.php
