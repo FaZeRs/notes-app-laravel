@@ -88,21 +88,4 @@ class CommentTest extends TestCase
             ],
         ]);
     }
-    //
-    //public function test_get_note()
-    //{
-    //    $user = $this->login();
-    //    $note = factory(Note::class)->create(['user_id' => $user->id]);
-    //    $response = $this->getJson(route('notes.show', $note));
-    //    $response->assertSuccessful();
-    //    $response->assertJsonStructure([
-    //        'data' => [
-    //            'id',
-    //            'body',
-    //            'is_public',
-    //            'created_at',
-    //            'updated_at',
-    //        ],
-    //    ]);
-    //}
 }
