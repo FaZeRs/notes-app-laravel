@@ -58,6 +58,12 @@ class Handler extends ExceptionHandler
             ], 404);
         }
 
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
+            return response()->json([
+                'message' => 'Method is not allowed for the requested route',
+            ], 405);
+        }
+
         return parent::render($request, $exception);
     }
 }
