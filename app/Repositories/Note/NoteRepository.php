@@ -26,7 +26,7 @@ class NoteRepository extends Repository implements NoteRepositoryInterface
      */
     public function getUserNotes($user_id, array $columns = ['*'])
     {
-        return $this->newQuery()->where('user_id', $user_id)->get($columns);
+        return $this->newQuery()->where('user_id', $user_id)->with('comments')->get($columns);
     }
 
     /**
@@ -37,7 +37,7 @@ class NoteRepository extends Repository implements NoteRepositoryInterface
      */
     public function getPublic(array $columns = ['*'])
     {
-        return $this->newQuery()->where('is_public', true)->get($columns);
+        return $this->newQuery()->where('is_public', true)->with('comments')->get($columns);
     }
 
     /**
