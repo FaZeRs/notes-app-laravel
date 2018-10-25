@@ -13,13 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 Route::middleware('guest')->group(function () {
-    Route::post('login', 'LoginController@login');
-    Route::post('register', 'RegisterController@register');
+    Route::post('login', 'LoginController@login')->name('auth.login');
+    Route::post('register', 'RegisterController@register')->name('auth.register');
 });
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('details', 'UserController@details');
-    Route::get('logout', 'UserController@logout');
+    Route::get('details', 'UserController@details')->name('auth.details');
+    Route::get('logout', 'UserController@logout')->name('auth.logout');
     Route::get('notes/public', 'NoteController@getPublic')->name('notes.public');
     Route::apiResource('notes', 'NoteController');
     Route::apiResource('notes/{note}/comments', 'CommentController', [
