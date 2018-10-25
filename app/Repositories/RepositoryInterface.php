@@ -7,7 +7,7 @@ interface RepositoryInterface
     /**
      * Get all the model records in the database.
      *
-     * @param  array  $columns
+     * @param  array $columns
      * @return \Illuminate\Support\Collection
      */
     public function all(array $columns = ['*']);
@@ -59,7 +59,6 @@ interface RepositoryInterface
      *
      * @param  mixed $id
      * @return bool|null
-
      * @throws \Throwable
      */
     public function delete($id);
@@ -69,7 +68,6 @@ interface RepositoryInterface
      *
      * @param  mixed $id
      * @return \Illuminate\Database\Eloquent\Model
-
      * @throws \Throwable
      */
     public function restore($id);
@@ -79,7 +77,6 @@ interface RepositoryInterface
      *
      * @param  mixed $id
      * @return bool|null
-
      * @throws \Throwable
      */
     public function forceDelete($id);
@@ -87,8 +84,8 @@ interface RepositoryInterface
     /**
      * Find a model by its primary key.
      *
-     * @param  mixed  $id
-     * @param  array  $columns
+     * @param  mixed $id
+     * @param  array $columns
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|null
      */
     public function find($id, array $columns = ['*']);
@@ -96,8 +93,8 @@ interface RepositoryInterface
     /**
      * Find a model by its primary key or throw an exception.
      *
-     * @param  mixed  $id
-     * @param  array  $columns
+     * @param  mixed $id
+     * @param  array $columns
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException

@@ -27,7 +27,7 @@ class CommentController extends Controller
     /**
      * Instantiate a new controller instance.
      *
-     * @param \App\Repositories\Note\NoteRepositoryInterface $notes
+     * @param \App\Repositories\Note\NoteRepositoryInterface       $notes
      * @param \App\Repositories\Comment\CommentRepositoryInterface $comments
      */
     public function __construct(NoteRepositoryInterface $notes, CommentRepositoryInterface $comments)
@@ -46,7 +46,7 @@ class CommentController extends Controller
     }
 
     /**
-     * @param \App\Models\Note $note
+     * @param \App\Models\Note     $note
      * @param  StoreCommentRequest $request
      * @return \App\Http\Resources\CommentResource
      * @throws \Throwable
@@ -62,8 +62,8 @@ class CommentController extends Controller
     }
 
     /**
-     * @param \App\Models\Note $note
-     * @param \App\Models\Comment $comment
+     * @param \App\Models\Note      $note
+     * @param \App\Models\Comment   $comment
      * @param  UpdateCommentRequest $request
      * @return \App\Http\Resources\CommentResource
      * @throws \Throwable
@@ -77,8 +77,8 @@ class CommentController extends Controller
     }
 
     /**
-     * @param \App\Models\Note $note
-     * @param \App\Models\Comment $comment
+     * @param \App\Models\Note                        $note
+     * @param \App\Models\Comment                     $comment
      * @param \App\Http\Requests\DeleteCommentRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable

@@ -35,7 +35,7 @@ class LoginController extends Controller
         }
 
         return response()->json([
-            'error' => trans('auth.failed')
+            'error' => trans('auth.failed'),
         ], 401);
     }
 }

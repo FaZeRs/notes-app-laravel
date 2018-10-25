@@ -44,7 +44,7 @@ abstract class Repository implements RepositoryInterface
     public function makeModel()
     {
         $model = app()->make($this->model());
-        if (!$model instanceof Model) {
+        if (! $model instanceof Model) {
             throw new \Exception("Class {$this->model()} must be an instance of ".Model::class);
         }
 
@@ -72,7 +72,7 @@ abstract class Repository implements RepositoryInterface
     /**
      * Create a new model instance that is existing.
      *
-     * @param array $attributes
+     * @param array   $attributes
      * @param boolean $exists
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -122,7 +122,6 @@ abstract class Repository implements RepositoryInterface
             $instance->fill($data)->saveOrFail();
         });
     }
-
 
     /**
      * Force create a new model and return the instance.
@@ -220,8 +219,8 @@ abstract class Repository implements RepositoryInterface
     /**
      * Find a model by its primary key or throw an exception.
      *
-     * @param  mixed  $id
-     * @param  array  $columns
+     * @param  mixed $id
+     * @param  array $columns
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException

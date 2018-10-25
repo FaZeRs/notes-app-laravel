@@ -31,7 +31,7 @@ class UserController extends Controller
         $accessToken->revoke();
 
         return response()->json([
-            'success' => 'You have successfully logged out'
+            'success' => 'You have successfully logged out',
         ]);
     }
 }

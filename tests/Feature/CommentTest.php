@@ -18,7 +18,7 @@ class CommentTest extends TestCase
         $user = $this->login();
         $note = factory(Note::class)->create(['user_id' => $user->id]);
         $data = [
-            'body'      => $this->faker->sentence,
+            'body' => $this->faker->sentence,
         ];
         $response = $this->postJson(route('comments.store', $note), $data);
         $response->assertSuccessful();
