@@ -66,7 +66,7 @@ abstract class Repository implements RepositoryInterface
      */
     protected function newQuery()
     {
-        return $this->model instanceof Model ? $this->model->newQuery() : clone $this->model;
+        return $this->model instanceof Model ? $this->model->with($this->with)->newQuery() : clone $this->model;
     }
 
     /**
@@ -79,20 +79,6 @@ abstract class Repository implements RepositoryInterface
     public function newInstance($attributes = [], $exists = false)
     {
         return $this->getModel()->newInstance($attributes, $exists);
-    }
-
-    /**
-     * Add relationships to the query builder to eager load.
-     *
-     * @return $this
-     */
-    protected function eagerLoad()
-    {
-        foreach ($this->with as $relation) {
-            $this->with($relation);
-        }
-
-        return $this;
     }
 
     /**
