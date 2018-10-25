@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\DeleteNoteRequest;
+use App\Http\Requests\ShowNoteRequest;
 use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
 use App\Http\Resources\NoteResource;
@@ -20,7 +21,8 @@ class NoteController extends Controller
 
     /**
      * Instantiate a new controller instance.
-     * @param NoteRepositoryInterface $notes
+     *
+     * @param  NoteRepositoryInterface $notes
      * @return void
      */
     public function __construct(NoteRepositoryInterface $notes)
@@ -29,7 +31,7 @@ class NoteController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
@@ -46,10 +48,11 @@ class NoteController extends Controller
     }
 
     /**
-     * @param  \App\Models\Note $note
+     * @param  \App\Models\Note                   $note
+     * @param  \App\Http\Requests\ShowNoteRequest $request
      * @return \App\Http\Resources\NoteResource
      */
-    public function show(Note $note)
+    public function show(Note $note, ShowNoteRequest $request)
     {
         return new NoteResource($this->notes->findOrFail($note->id));
     }
@@ -69,8 +72,8 @@ class NoteController extends Controller
     }
 
     /**
-     * @param \App\Models\Note $note
-     * @param  UpdateNoteRequest $request
+     * @param  \App\Models\Note                     $note
+     * @param  \App\Http\Requests\UpdateNoteRequest $request
      * @return \App\Http\Resources\NoteResource
      * @throws \Throwable
      */
@@ -83,8 +86,8 @@ class NoteController extends Controller
     }
 
     /**
-     * @param \App\Models\Note $note
-     * @param \App\Http\Requests\DeleteNoteRequest $request
+     * @param  \App\Models\Note                     $note
+     * @param  \App\Http\Requests\DeleteNoteRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
