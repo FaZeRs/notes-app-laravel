@@ -18,8 +18,8 @@ class NoteResource extends JsonResource
             'id'         => $this->id,
             'body'       => $this->body,
             'is_public'  => $this->is_public,
-           // 'user'       => $this->whenLoaded('user'),
-            'comments'   => $this->whenLoaded('comments'),
+            'user'       => new UserResource($this->whenLoaded('user')),
+            'comments'   => CommentResource::collection($this->whenLoaded('comments')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
