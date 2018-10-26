@@ -1,7 +1,7 @@
 ## Installing
 
 ```
-git clone git@github.com:FaZeRs/naurislinde.com.git
+git clone git@github.com:FaZeRs/notes-app-laravel.git
 ```
 
 ```
