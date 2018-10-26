@@ -1,4 +1,4 @@
-### Installing
+## Installing
 
 ```
 git clone git@github.com:FaZeRs/naurislinde.com.git
@@ -15,7 +15,7 @@ docker-compose exec php composer start
 
 The application will be available on http://localhost:8000
 
-#### API Links
+## API Links
 
 Verb | Path | NamedRoute | Controller | Action | Middleware
 --- | --- | --- | --- | --- | ---
@@ -33,3 +33,10 @@ GET | /api/notes/{note}/comments | comments.index | \App\Http\Controllers\Api\Co
 POST | /api/notes/{note}/comments | comments.store | \App\Http\Controllers\Api\CommentController | store | auth
 PUT | /api/notes/{note}/comments/{comment} | comments.update | \App\Http\Controllers\Api\CommentController | update | auth
 DELETE | /api/notes/{note}/comments/{comment} | comments.destroy | \App\Http\Controllers\Api\CommentController | destroy | auth
+
+
+## Running the tests
+
+```
+composer test
+```
