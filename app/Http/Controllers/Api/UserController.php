@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function details(Request $request)
     {
-        return new UserResource($request->user()->load('notes'));
+        return new UserResource($request->user()->load('notes', 'notes.comments'));
     }
 
     /**
