@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteNoteRequest;
 use App\Http\Requests\ShowNoteRequest;
 use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
 use App\Http\Resources\NoteResource;
-use App\Http\Controllers\Controller;
 use App\Models\Note;
 use App\Repositories\Note\NoteRepositoryInterface;
 use Illuminate\Http\Request;

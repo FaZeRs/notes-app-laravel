@@ -3,11 +3,11 @@
 namespace Tests\Unit;
 
 use App\Models\Comment;
-use App\Models\User;
-use Tests\TestCase;
 use App\Models\Note;
+use App\Models\User;
 use App\Repositories\Comment\CommentRepositoryInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CommentRepositoryTest extends TestCase
 {

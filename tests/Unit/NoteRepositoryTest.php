@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Models\User;
-use Tests\TestCase;
 use App\Models\Note;
+use App\Models\User;
 use App\Repositories\Note\NoteRepositoryInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class NoteRepositoryTest extends TestCase
 {
