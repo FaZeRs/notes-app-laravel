@@ -7,7 +7,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     /**
      * @param Request $request

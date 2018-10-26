@@ -17,8 +17,8 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('details', 'UserController@details')->name('auth.details');
-    Route::get('logout', 'UserController@logout')->name('auth.logout');
+    Route::get('details', 'ProfileController@details')->name('auth.details');
+    Route::get('logout', 'ProfileController@logout')->name('auth.logout');
     Route::get('notes/public', 'NoteController@getPublic')->name('notes.public');
     Route::get('notes/{note}/comments', 'NoteController@comments')->name('notes.comments');
     Route::apiResource('notes', 'NoteController');
