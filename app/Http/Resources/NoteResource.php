@@ -15,7 +15,7 @@ class NoteResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id'         => $this->id,
+            'id'         => $this->uuid,
             'body'       => $this->body,
             'is_public'  => $this->is_public,
             'user'       => new UserResource($this->whenLoaded('user')),
