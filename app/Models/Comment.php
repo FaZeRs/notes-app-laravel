@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\UuidScopeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    use UuidScopeTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,6 +19,16 @@ class Comment extends Model
         'note_id',
         'body',
     ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 
     /**
      * Get the user that owns the comment.

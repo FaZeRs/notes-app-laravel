@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\UuidScopeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
+    use UuidScopeTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +28,16 @@ class Note extends Model
     protected $casts = [
         'is_public' => 'boolean',
     ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 
     /**
      * Scope a query to only include public notes.

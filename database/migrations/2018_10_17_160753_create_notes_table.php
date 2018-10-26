@@ -16,6 +16,7 @@ class CreateNotesTable extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
+            $table->uuid('uuid')->index()->unique();
             $table->string('body')->nullable();
             $table->boolean('is_public')->default(false);
             $table->timestamps();

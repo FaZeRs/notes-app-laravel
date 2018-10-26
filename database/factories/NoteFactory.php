@@ -18,6 +18,7 @@ $factory->define(App\Models\Note::class, function (Faker $faker) {
         'user_id' => function () {
             return factory(App\Models\User::class)->create()->id;
         },
+        'uuid' => $faker->uuid,
         'body' => $faker->sentence,
         'is_public' => $faker->boolean($chanceOfGettingTrue = 50),
     ];
