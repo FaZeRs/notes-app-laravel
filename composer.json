@@ -16,10 +16,12 @@
         "barryvdh/laravel-ide-helper": "^2.5",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.13",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "sensiolabs/security-checker": "^5.0"
     },
     "autoload": {
         "classmap": [
@@ -61,6 +63,12 @@
             "@php artisan migrate --seed",
             "@php artisan passport:install",
             "@composer test"
+        ],
+        "format": [
+            "vendor/bin/php-cs-fixer fix"
+        ],
+        "check-security": [
+            "vendor/bin/security-checker security:check"
         ]
     },
     "config": {
