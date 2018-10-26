@@ -9,40 +9,23 @@ use App\Http\Requests\UpdateCommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
 use App\Models\Note;
-use App\Repositories\Comment\CommentRepositoryInterface;
-use App\Repositories\Note\NoteRepositoryInterface;
 
 class CommentController extends Controller
 {
     /**
-     * @var \App\Repositories\Note\NoteRepositoryInterface
+     * @var Comment
      */
-    protected $notes;
-
-    /**
-     * @var \App\Repositories\Comment\CommentRepositoryInterface
-     */
-    protected $comments;
+    protected $model;
 
     /**
      * Instantiate a new controller instance.
      *
-     * @param \App\Repositories\Note\NoteRepositoryInterface       $notes
-     * @param \App\Repositories\Comment\CommentRepositoryInterface $comments
+     * @param  Comment $model
+     * @return void
      */
-    public function __construct(NoteRepositoryInterface $notes, CommentRepositoryInterface $comments)
+    public function __construct(Comment $model)
     {
-        $this->notes = $notes;
-        $this->comments = $comments;
-    }
-
-    /**
-     * @param \App\Models\Note $note
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function index(Note $note)
-    {
-        return CommentResource::collection($this->notes->getComments($note->id));
+        $this->model = $model;
     }
 
     /**
@@ -56,7 +39,7 @@ class CommentController extends Controller
         $data = $request->validated();
         $data['user_id'] = $request->user()->id;
         $data['note_id'] = $note->id;
-        $comment = $this->comments->create($data);
+        $comment = $this->model->create($data);
 
         return new CommentResource($comment);
     }
@@ -71,7 +54,7 @@ class CommentController extends Controller
     public function update(Note $note, Comment $comment, UpdateCommentRequest $request)
     {
         $data = $request->validated();
-        $this->comments->update($comment->id, $data);
+        $comment->update($data);
 
         return new CommentResource($comment);
     }
@@ -85,7 +68,7 @@ class CommentController extends Controller
      */
     public function destroy(Note $note, Comment $comment, DeleteCommentRequest $request)
     {
-        $this->comments->delete($comment->id);
+        $comment->delete();
 
         return response()->json(null, 204);
     }

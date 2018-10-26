@@ -20,8 +20,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('details', 'UserController@details')->name('auth.details');
     Route::get('logout', 'UserController@logout')->name('auth.logout');
     Route::get('notes/public', 'NoteController@getPublic')->name('notes.public');
+    Route::get('notes/{note}/comments', 'NoteController@comments')->name('notes.comments');
     Route::apiResource('notes', 'NoteController');
     Route::apiResource('notes/{note}/comments', 'CommentController', [
-        'except' => ['show'],
+        'except' => ['index', 'show'],
     ]);
 });

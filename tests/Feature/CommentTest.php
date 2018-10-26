@@ -75,7 +75,7 @@ class CommentTest extends TestCase
             'user_id' => $user->id,
             'note_id' => $note->id,
         ]);
-        $response = $this->getJson(route('comments.index', $note));
+        $response = $this->getJson(route('notes.comments', $note));
         $response->assertSuccessful();
         $response->assertJsonStructure([
             'data' => [

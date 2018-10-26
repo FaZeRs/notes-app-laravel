@@ -7,27 +7,27 @@ use App\Http\Requests\DeleteNoteRequest;
 use App\Http\Requests\ShowNoteRequest;
 use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\NoteResource;
 use App\Models\Note;
-use App\Repositories\Note\NoteRepositoryInterface;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
     /**
-     * @var NoteRepositoryInterface
+     * @var Note
      */
-    protected $notes;
+    protected $model;
 
     /**
      * Instantiate a new controller instance.
      *
-     * @param  NoteRepositoryInterface $notes
+     * @param  Note $model
      * @return void
      */
-    public function __construct(NoteRepositoryInterface $notes)
+    public function __construct(Note $model)
     {
-        $this->notes = $notes;
+        $this->model = $model;
     }
 
     /**
@@ -36,7 +36,7 @@ class NoteController extends Controller
      */
     public function index(Request $request)
     {
-        return NoteResource::collection($this->notes->getUserNotes($request->user()->id));
+        return NoteResource::collection($request->user()->notes);
     }
 
     /**
@@ -44,7 +44,7 @@ class NoteController extends Controller
      */
     public function getPublic()
     {
-        return NoteResource::collection($this->notes->getPublic());
+        return NoteResource::collection($this->model->public()->get());
     }
 
     /**
@@ -54,7 +54,17 @@ class NoteController extends Controller
      */
     public function show(Note $note, ShowNoteRequest $request)
     {
-        return new NoteResource($this->notes->findOrFail($note->id));
+        return new NoteResource($note);
+    }
+
+    /**
+     * @param  \App\Models\Note                   $note
+     * @param  \App\Http\Requests\ShowNoteRequest $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function comments(Note $note, ShowNoteRequest $request)
+    {
+        return CommentResource::collection($note->comments);
     }
 
     /**
@@ -66,7 +76,7 @@ class NoteController extends Controller
     {
         $data = $request->validated();
         $data['user_id'] = $request->user()->id;
-        $note = $this->notes->create($data);
+        $note = $this->model->create($data);
 
         return new NoteResource($note);
     }
@@ -80,7 +90,7 @@ class NoteController extends Controller
     public function update(Note $note, UpdateNoteRequest $request)
     {
         $data = $request->validated();
-        $note = $this->notes->update($note->id, $data);
+        $note->update($data);
 
         return new NoteResource($note);
     }
@@ -93,7 +103,7 @@ class NoteController extends Controller
      */
     public function destroy(Note $note, DeleteNoteRequest $request)
     {
-        $this->notes->delete($note->id);
+        $note->delete();
 
         return response()->json(null, 204);
     }
