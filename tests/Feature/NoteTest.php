@@ -90,6 +90,8 @@ class NoteTest extends TestCase
                 'id',
                 'body',
                 'is_public',
+                'user',
+                'comments',
                 'created_at',
                 'updated_at',
             ],

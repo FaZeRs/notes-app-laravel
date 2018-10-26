@@ -54,7 +54,7 @@ class NoteController extends Controller
      */
     public function show(Note $note, ShowNoteRequest $request)
     {
-        return new NoteResource($note);
+        return new NoteResource($note->load('user', 'comments'));
     }
 
     /**
